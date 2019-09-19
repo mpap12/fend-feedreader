@@ -99,7 +99,7 @@ $(function() {
 
   describe('Initial Entries', function() {
 
-     beforeEach(function() {
+     beforeEach(function(done) {
        loadFeed(0, done);
      });
 
