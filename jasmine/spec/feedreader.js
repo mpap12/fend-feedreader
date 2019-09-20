@@ -108,23 +108,31 @@ $(function() {
  describe('New Feed Selection', function() {
    const feed = document.querySelector('.feed');
    const firstFeed = [];
+   const secondFeed = [];
 
    beforeEach(function(done) {
-     loadFeed(0);
-     Array.from(feed.children).forEach(function(entry) {
-       firstFeed.push(entry.innerText);
+     loadFeed(0, function() {
+       Array.from(feed.children).forEach(function(entry) {
+         firstFeed.push(entry.innerText);
+       });
      });
-     loadFeed(1, done);
+     loadFeed(1, function() {
+       Array.from(feed.children).forEach(function(entry) {
+         secondFeed.push(entry.innerText);
+         done();
+       });
+     });
    });
+
 
    /* 'changes content' is a test that ensures when a new feed is loaded
     * by the loadFeed function that the content actually changes.
     */
 
    it('changes content', function() {
-     Array.from(feed.children).forEach(function(entry, index) {
-       expect(entry.innerText === firstFeed[index]).toBe(false);
+     secondFeed.forEach(function(entry, index) {
+       expect(secondFeed[index] === firstFeed[index]).toBe(false);
      });
    });
  });
-});
+}());
