@@ -98,7 +98,6 @@ $(function() {
       */
 
      it('contain an entry', function() {
-       const feed = document.querySelector('.feed');
        const entry = document.querySelector('div.feed article.entry');
        expect(entry.innerText.length).toBeGreaterThan(0);
      });
@@ -111,28 +110,26 @@ $(function() {
    const secondFeed = [];
 
    beforeEach(function(done) {
-     loadFeed(0, function() {
+     loadFeed(0, loadFeed(1, done));
        Array.from(feed.children).forEach(function(entry) {
          firstFeed.push(entry.innerText);
        });
+       done();
      });
-     loadFeed(1, function() {
-       Array.from(feed.children).forEach(function(entry) {
-         secondFeed.push(entry.innerText);
-         done();
-       });
-     });
-   });
 
 
    /* 'changes content' is a test that ensures when a new feed is loaded
     * by the loadFeed function that the content actually changes.
     */
 
-   it('changes content', function() {
+   it('changes content', function(done) {
+     Array.from(feed.children).forEach(function(entry) {
+       secondFeed.push(entry.innerText);
+     });
      secondFeed.forEach(function(entry, index) {
        expect(secondFeed[index] === firstFeed[index]).toBe(false);
      });
+     done();
    });
  });
 }());
