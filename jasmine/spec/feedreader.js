@@ -100,7 +100,7 @@ $(function() {
      it('contain an entry', function() {
        const feed = document.querySelector('.feed');
        const entry = document.querySelector('div.feed article.entry');
-       expect(entry).not.toBe(null);
+       expect(entry.innerText.length).toBeGreaterThan(0);
      });
   });
 
