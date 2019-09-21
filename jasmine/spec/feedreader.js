@@ -21,9 +21,10 @@ $(function() {
        * allFeeds in app.js to be an empty array and refresh the
        * page?
        */
-      it('are defined', function() {
-          expect(allFeeds).toBeDefined();
-          expect(allFeeds.length).not.toBe(0);
+      it('are defined and not empty', function() {
+          // expect(allFeeds).toBeDefined();
+          // expect(allFeeds.length).not.toBe(0);
+          expect(allFeeds).toBeTruthy();
       });
 
 
@@ -33,10 +34,13 @@ $(function() {
        */
 
        it('contain URLs', function() {
-         for (let feed of allFeeds) {
-           expect(feed.url).toBeDefined();
-           expect(feed.url.length).not.toBe(0);
-         }
+         // for (let feed of allFeeds) {
+         //   expect(feed.url).toBeDefined();
+         //   expect(feed.url.length).not.toBe(0);
+         // }
+         allFeeds.forEach(feed => {
+           expect(feed.url).toBeTruthy();
+         });
        });
 
       /* 'contain names' is a test that loops through each feed
@@ -45,10 +49,13 @@ $(function() {
        */
 
        it('contain names', function() {
-         for (let feed of allFeeds) {
-           expect(feed.name).toBeDefined();
-           expect(feed.name.length).not.toBe(0);
-         }
+         // for (let feed of allFeeds) {
+         //   expect(feed.name).toBeDefined();
+         //   expect(feed.name.length).not.toBe(0);
+         // }
+         allFeeds.forEach(feed => {
+           expect(feed.name).toBeTruthy();
+         });
        });
      });
 
