@@ -98,7 +98,7 @@ $(function() {
       */
 
      it('contain an entry', function() {
-       const entry = document.querySelector('div.feed article.entry');
+       const entry = document.querySelector('div.feed .entry');
        expect(entry.innerText.length).toBeGreaterThan(0);
      });
   });
